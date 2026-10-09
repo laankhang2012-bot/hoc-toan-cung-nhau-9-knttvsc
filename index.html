@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HỌC TOÁN CÙNG KHANG NÈ!!!</title>
+
+    <!-- CẤU HÌNH MATHJAX ĐỂ NHẬN DẠNG DẤU $ HOẶC \( \) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["[", "]"],
+          ],
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .main-title {
+        margin-top: 40px;
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: linear-gradient(90deg, #ff8a00, #e52e71, #00d2ff);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 50px;
+      }
+
+      .auth-card {
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 16px;
+        padding: 30px;
+        box-sizing: border-box;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        overflow: hidden;
+      }
+
+      .auth-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(
+          transparent,
+          transparent,
+          transparent,
+          #00d2ff
+        );
+        animation: rotate 4s linear infinite;
+        z-index: -2;
+      }
+
+      .auth-card::after {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        background: #14142b;
+        border-radius: 13px;
+        z-index: -1;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .tabs {
+        display: flex;
+        margin-bottom: 20px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .tab-btn {
+        flex: 1;
+        padding: 12px;
+        background: none;
+        border: none;
+        color: #aaa;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .tab-btn.active {
+        color: #00d2ff;
+        border-bottom: 3px solid #00d2ff;
+      }
+
+      .form-group {
+        margin-bottom: 16px;
+        text-align: left;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 0.9rem;
+        color: #ccc;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        font-size: 0.95rem;
+        box-sizing: border-box;
+        outline: none;
+      }
+
+      .form-control:focus {
+        border-color: #00d2ff;
+        box-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+      }
+
+      select.form-control option {
+        background: #14142b;
+        color: #fff;
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        margin-top: 10px;
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+      }
+
+      .note-text {
+        color: #ffeb3b;
+        font-size: 0.8rem;
+        margin-top: 6px;
+        display: block;
+      }
+
+      .content-box {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #333;
+        border-radius: 16px;
+        padding: 35px;
+        box-sizing: border-box;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        line-height: 1.7;
+      }
+
+      .content-box h2 {
+        color: #1a73e8;
+        margin-top: 0;
+        border-bottom: 2px solid #e8f0fe;
+        padding-bottom: 10px;
+      }
+
+      .content-box h3 {
+        color: #d93025;
+        margin-top: 20px;
+      }
+
+      #homeScreen {
+        display: none;
+        width: 100%;
+        text-align: center;
+      }
+
+      .user-welcome {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #00d2ff;
+      }
+
+      .btn-logout {
+        padding: 8px 20px;
+        background: #ff4757;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .formula-card {
+        background: #f8f9fa;
+        border-left: 4px solid #1a73e8;
+        padding: 12px 18px;
+        margin: 12px 0;
+        border-radius: 0 8px 8px 0;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="main-title">HỌC TOÁN CÓ GÌ ĐÂU MÀ KHÓ ĐỂ TUI</h1>
+
+    <div class="container">
+      <!-- KHUNG ĐĂNG NHẬP / ĐĂNG KÝ -->
+      <div id="loginScreen" class="auth-card">
+        <div class="tabs">
+          <button id="tabLoginBtn" class="tab-btn active">🔑 ĐĂNG NHẬP</button>
+          <button id="tabRegisterBtn" class="tab-btn">📝 ĐĂNG KÝ</button>
+        </div>
+
+        <!-- FORM ĐĂNG NHẬP -->
+        <div id="formLogin">
+          <div class="form-group">
+            <label for="loginName">Tên tài khoản:</label>
+            <input
+              type="text"
+              id="loginName"
+              class="form-control"
+              placeholder="Nhập tên tài khoản của bạn..."
+            />
+          </div>
+          <button id="btnLogin" class="btn-submit">Đăng nhập vào học</button>
+        </div>
+
+        <!-- FORM ĐĂNG KÝ -->
+        <div id="formRegister" style="display: none">
+          <div class="form-group">
+            <label for="regName">Đặt tên tài khoản:</label>
+            <input
+              type="text"
+              id="regName"
+              class="form-control"
+              placeholder="Nhập tên tài khoản mới..."
+            />
+            <small class="note-text"
+              >⚠️ Lưu ý: Đặt tên viết liền không dấu có số và kí hiệu đặc biệt
+              để tránh bị lỗi giữa những tài khoản khác nhau</small
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="selectQuestion">Chọn câu hỏi bảo mật:</label>
+            <select id="selectQuestion" class="form-control">
+              <option value="pet">Tên con vật cưng đầu tiên của bạn?</option>
+              <option value="school">Tên trường tiểu học của bạn?</option>
+              <option value="custom">Tự nhập câu hỏi riêng...</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              id="inputCustomQuestion"
+              class="form-control"
+              placeholder="Nhập câu hỏi bảo mật của bạn..."
+              style="display: none"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="regAnswer">Câu trả lời bảo mật:</label>
+            <input
+              type="text"
+              id="regAnswer"
+              class="form-control"
+              placeholder="Nhập câu trả lời bí mật..."
+            />
+          </div>
+
+          <button id="btnRegister" class="btn-submit">Tạo tài khoản</button>
+        </div>
+
+        <!-- FORM XÁC MINH CÂU HỎI BẢO MẬT -->
+        <div id="formVerify" style="display: none">
+          <p style="color: #00d2ff; font-weight: 600; margin-bottom: 10px">
+            Xác minh tài khoản
+          </p>
+          <div class="form-group">
+            <label
+              id="questionText"
+              style="color: #fff; font-size: 1rem"
+            ></label>
+            <input
+              type="text"
+              id="verifyAnswer"
+              class="form-control"
+              placeholder="Nhập câu trả lời của bạn..."
+            />
+          </div>
+          <button id="btnVerify" class="btn-submit">Xác nhận vào học</button>
+        </div>
+      </div>
+
+      <!-- MÀN HÌNH SAU KHI ĐĂNG NHẬP THÀNH CÔNG -->
+      <div id="homeScreen">
+        <div class="user-welcome">
+          <span id="userName"></span>
+          <button id="logout" class="btn-logout" style="margin-left: 15px">
+            Đăng xuất
+          </button>
+        </div>
+      </div>
+
+      <!-- KHUNG TRẮNG NỘI DUNG BÀI HỌC -->
+      <div class="content-box">
+        <h2>📌 MỤC ĐÍCH, HƯỚNG DẪN</h2>
+        <p>
+          Bài viết này được tạo ra nhằm mục đích giúp các bạn học sinh có thể
+          học toán một cách hiệu quả và dễ dàng hơn. Dưới đây là một số điểm
+          quan trọng cần lưu ý khi sử dụng tài liệu này:
+        </p>
+        <ul>
+          <li>Không được sử dụng nhiều tabs cùng lúc</li>
+          <li>Đảm bảo kết nối internet ổn định</li>
+          <li>Tránh sử dụng các ứng dụng khác trong quá trình học</li>
+          <li>Đảm bảo thiết bị của bạn có đủ pin hoặc được cắm sạc</li>
+          <li>Đọc kỹ hướng dẫn trước khi bắt đầu học</li>
+          <li>
+            Nếu các bạn sử dụng A.I hay bất kì công nghệ khác. Trang sẽ không
+            khóa account của bạn. Nếu bạn gặp bất kỳ vấn đề nào, chúng tôi sẽ
+            không giải quyết vấn đề đó.
+          </li>
+        </ul>
+        <p
+          style="
+            background: #e8f0fe;
+            padding: 12px;
+            border-left: 4px solid #1a73e8;
+            border-radius: 4px;
+          "
+        >
+          ⚠️ Lưu ý: Nếu gặp lỗi khi đăng nhập, vui lòng kiểm tra lại tên tài
+          khoản và câu trả lời bảo mật. Nếu vẫn không thể đăng nhập, hãy liên hệ
+          với quản trị viên để được hỗ trợ. Để có thể hổ trợ tốt hơn, bạn nên
+          cung cấp thông tin về lỗi gặp phải và thời gian xảy ra lỗi thông qua
+          email laankhang2012@gmail.com hoặc các kênh liên lạc khác.
+        </p>
+      </div>
+
+      <!-- KHUNG TRẮNG NỘI DUNG BÀI HỌC -->
+      <div class="content-box">
+        <h2>📘 LÝ THUYẾT: PHƯƠNG TRÌNH & HỆ PHƯƠNG TRÌNH BẬC NHẤT 2 ẨN</h2>
+
+        <h3>1. Phương trình bậc nhất hai ẩn</h3>
+        <p>
+          <b>Khái niệm:</b> Phương trình bậc nhất hai ẩn $x$ và $y$ là hệ thức
+          có dạng:
+        </p>
+        <div class="formula-card">ax + by = c</div>
+        <p>
+          <i
+            >(Trong đó $a, b, c$ là các số cho trước; $a$ và $b$ không đồng thời
+            bằng 0).</i
+          >
+        </p>
+        <ul>
+          <li>
+            <b>Nghiệm của phương trình:</b> Cặp số $(x_0; y_0)$ làm cho hai vế
+            của phương trình bằng nhau được gọi là một nghiệm của phương trình.
+          </li>
+          <li>
+            <b>Tập nghiệm:</b> Phương trình bậc nhất hai ẩn luôn có
+            <b>vô số nghiệm</b>. Tập nghiệm của nó được biểu diễn bởi đường
+            thẳng $d: ax + by = c$ trên mặt phẳng tọa độ $Oxy$.
+          </li>
+        </ul>
+
+        <h3>2. Hệ hai phương trình bậc nhất hai ẩn</h3>
+        <p>
+          <b>Khái niệm:</b> Là hệ gồm hai phương trình bậc nhất hai ẩn dạng:
+        </p>
+        <div class="formula-card">
+         $$\begin{cases} ax + by = c \\ a'x + b'y = c' \end{cases}$$
+        </div>
+        <p>
+          Nghiệm chung $(x_0; y_0)$ của hai phương trình được gọi là một nghiệm
+          của hệ.
+        </p>
+
+        <h3>3. Phương pháp giải Hệ hai phương trình bậc nhất hai ẩn</h3>
+        <ul>
+          <li>
+            <b>Phương pháp thế:</b> Dùng một phương trình để biểu diễn một ẩn
+            (ví dụ $x$) theo ẩn kia ($y$), rồi thế vào phương trình còn lại để
+            đưa về phương trình bậc nhất một ẩn.
+          </li>
+          <li>
+            <b>Phương pháp cộng đại số:</b> Nhân hai vế của mỗi phương trình với
+            một số thích hợp sao cho hệ số của một ẩn trong hai phương trình
+            bằng nhau hoặc đối nhau, sau đó cộng hoặc trừ hai phương trình để
+            triệt tiêu ẩn đó.
+          </li>
+        </ul>
+
+        <p
+          style="
+            background: #e8f0fe;
+            padding: 12px;
+            border-left: 4px solid #1a73e8;
+            border-radius: 4px;
+            margin-top: 20px;
+          "
+        >
+          💡 <b>MẸO NHỚ:</b> Số nghiệm của hệ phương trình chính là số giao điểm
+          của hai đường thẳng đại diện cho hai phương trình đó trên mặt phẳng
+          tọa độ!
+        </p>
+      </div>
+
+      <!-- KHUNG TRẮNG 2: BÀI TẬP VÀ THỰC HÀNH -->
+      <div class="content-box">
+        <h2>📝 BÀI TẬP BẮT BUỘC & THỰC HÀNH</h2>
+
+        <h3>
+          Bài 1: Giải các hệ phương trình sau bằng phương pháp cộng đại số
+        </h3>
+        <ul>
+          <li>a) $2x + y = 5$ và $x - y = 1$</li>
+          <li>b) $3x + 2y = 8$ và $2x - 3y = -1$</li>
+        </ul>
+
+        <h3>Bài 2: Giải hệ phương trình bằng phương pháp thế</h3>
+        <ul>
+          <li>a) $x - 3y = 2$ và $2x + 5y = 15$</li>
+        </ul>
+        <h2>💡 Gợi ý:</h2>
+        <p style="
+            background: #f1f1e5;
+            padding: 12px;
+            border-left: 4px solid #995804;
+            border-radius: 4px;
+            margin-top: 20px;
+          ">
+          - Với phương pháp cộng đại số, hãy nhân các phương trình với các số thích hợp để triệt tiêu một ẩn. <br>
+          - Với phương pháp thế, hãy biểu diễn một ẩn theo ẩn kia từ một phương trình, rồi thế vào phương trình còn lại.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const GOOGLE_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbw-5TsqJ1zGtc3baprzehB8lW39JN5tWwI1AS2Pl_liXhEX4sPqBT90WWA8oUKa3q0W/exec";
+
+      // Hàm JSONP gửi request mượt mà, chống chặn CORS 100%
+      function sendRequest(params, callback) {
+        const callbackName =
+          "googleCallback_" + Math.round(100000 * Math.random());
+
+        window[callbackName] = function (data) {
+          delete window[callbackName];
+          if (script.parentNode) script.parentNode.removeChild(script);
+          callback(data);
+        };
+
+        const queryString = new URLSearchParams(params).toString();
+        const script = document.createElement("script");
+        script.src = `${GOOGLE_SCRIPT_URL}?${queryString}&prefix=${callbackName}`;
+
+        script.onerror = function () {
+          if (script.parentNode) script.parentNode.removeChild(script);
+          alert(
+            "Không thể kết nối đến máy chủ Google! Vui lòng kiểm tra lại cấu hình Deploy.",
+          );
+        };
+
+        document.body.appendChild(script);
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const tabLoginBtn = document.getElementById("tabLoginBtn");
+        const tabRegisterBtn = document.getElementById("tabRegisterBtn");
+        const formLogin = document.getElementById("formLogin");
+        const formRegister = document.getElementById("formRegister");
+        const formVerify = document.getElementById("formVerify");
+
+        const loginName = document.getElementById("loginName");
+        const regName = document.getElementById("regName");
+        const selectQuestion = document.getElementById("selectQuestion");
+        const inputCustomQuestion = document.getElementById(
+          "inputCustomQuestion",
+        );
+        const regAnswer = document.getElementById("regAnswer");
+        const verifyAnswer = document.getElementById("verifyAnswer");
+        const questionText = document.getElementById("questionText");
+
+        const loginScreen = document.getElementById("loginScreen");
+        const homeScreen = document.getElementById("homeScreen");
+        const userName = document.getElementById("userName");
+
+        const btnLogin = document.getElementById("btnLogin");
+        const btnRegister = document.getElementById("btnRegister");
+        const btnVerify = document.getElementById("btnVerify");
+        const logoutBtn = document.getElementById("logout");
+
+        let currentCorrectAnswer = "";
+        let currentUserName = "";
+
+        tabLoginBtn.addEventListener("click", () => {
+          tabLoginBtn.classList.add("active");
+          tabRegisterBtn.classList.remove("active");
+          formLogin.style.display = "block";
+          formRegister.style.display = "none";
+          formVerify.style.display = "none";
+        });
+
+        tabRegisterBtn.addEventListener("click", () => {
+          tabRegisterBtn.classList.add("active");
+          tabLoginBtn.classList.remove("active");
+          formRegister.style.display = "block";
+          formLogin.style.display = "none";
+          formVerify.style.display = "none";
+        });
+
+        selectQuestion.addEventListener("change", () => {
+          inputCustomQuestion.style.display =
+            selectQuestion.value === "custom" ? "block" : "none";
+        });
+
+        // XỬ LÝ ĐĂNG KÝ
+        btnRegister.addEventListener("click", () => {
+          const name = regName.value.trim();
+          const answer = regAnswer.value.trim().toLowerCase();
+
+          if (!name) {
+            alert("Vui lòng đặt tên tài khoản!");
+            return;
+          }
+
+          let questionStr = "";
+          if (selectQuestion.value === "custom") {
+            questionStr = inputCustomQuestion.value.trim();
+            if (!questionStr) {
+              alert("Vui lòng nhập câu hỏi bảo mật!");
+              return;
+            }
+          } else {
+            const qMap = {
+              pet: "Tên con vật cưng đầu tiên của bạn?",
+              school: "Tên trường tiểu học của bạn?",
+            };
+            questionStr = qMap[selectQuestion.value];
+          }
+
+          if (!answer) {
+            alert("Vui lòng nhập câu trả lời bảo mật!");
+            return;
+          }
+
+          btnRegister.innerText = "Đang lưu...";
+          btnRegister.disabled = true;
+
+          const params = {
+            action: "register",
+            name: name,
+            question: questionStr,
+            answer: answer,
+          };
+
+          sendRequest(params, (data) => {
+            btnRegister.innerText = "Tạo tài khoản";
+            btnRegister.disabled = false;
+
+            if (data && data.status === "EXISTS") {
+              alert(
+                `❌ Tên tài khoản "${name}" đã có bạn khác đặt rồi!\nVui lòng chọn tên khác (vd: ${name}2026) nhé.`,
+              );
+              regName.focus();
+            } else if (data && data.status === "SUCCESS") {
+              alert("🎉 Đăng ký thành công!");
+              loginSuccess(name);
+            }
+          });
+        });
+
+        // XỬ LÝ ĐĂNG NHẬP
+        btnLogin.addEventListener("click", () => {
+          const name = loginName.value.trim();
+          if (!name) {
+            alert("Vui lòng nhập tên tài khoản!");
+            return;
+          }
+
+          btnLogin.innerText = "Đang kiểm tra...";
+          btnLogin.disabled = true;
+
+          const params = { action: "login", name: name };
+
+          sendRequest(params, (data) => {
+            btnLogin.innerText = "Đăng nhập vào học";
+            btnLogin.disabled = false;
+
+            if (data && data.status === "SUCCESS") {
+              currentUserName = name;
+              currentCorrectAnswer = data.answer || "";
+              questionText.innerText = data.question || "Mật khẩu bảo mật:";
+
+              formLogin.style.display = "none";
+              formVerify.style.display = "block";
+            } else if (data && data.status === "NOT_FOUND") {
+              alert(
+                `❌ Tài khoản "${name}" chưa được đăng ký! Vui lòng bấm tab ĐĂNG KÝ.`,
+              );
+            }
+          });
+        });
+
+        // XÁC MINH CÂU HỎI BẢO MẬT
+        btnVerify.addEventListener("click", () => {
+          const ans = verifyAnswer.value.trim().toLowerCase();
+          if (ans === currentCorrectAnswer) {
+            loginSuccess(currentUserName);
+          } else {
+            alert("❌ Câu trả lời bảo mật không chính xác!");
+          }
+        });
+
+        function loginSuccess(name) {
+          loginScreen.style.display = "none";
+          homeScreen.style.display = "block";
+          userName.innerText = "Xin chào: " + name;
+        }
+
+        logoutBtn.addEventListener("click", () => {
+          homeScreen.style.display = "none";
+          loginScreen.style.display = "block";
+          tabLoginBtn.click();
+          loginName.value = "";
+          regName.value = "";
+          regAnswer.value = "";
+          verifyAnswer.value = "";
+        });
+      });
+    </script>
+  </body>
+</html>
