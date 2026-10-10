@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HỌC TOÁN CÙNG KHANG NÈ!!!</title>
 
-    <!-- CẤU HÌNH MATHJAX ĐỂ NHẬN DẠNG DẤU $ HOẶC \( \) -->
+    <!-- CẤU HÌNH MATHJAX -->
     <script>
       window.MathJax = {
         tex: {
@@ -48,7 +48,6 @@
         text-transform: uppercase;
         letter-spacing: 2px;
         background: linear-gradient(90deg, #ff8a00, #e52e71, #00d2ff);
-        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
@@ -56,7 +55,7 @@
 
       .container {
         width: 90%;
-        max-width: 1100px;
+        max-width: 1000px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -77,41 +76,6 @@
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         border: 1px solid rgba(255, 255, 255, 0.18);
         overflow: hidden;
-      }
-
-      .auth-card::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(
-          transparent,
-          transparent,
-          transparent,
-          #00d2ff
-        );
-        animation: rotate 4s linear infinite;
-        z-index: -2;
-      }
-
-      .auth-card::after {
-        content: "";
-        position: absolute;
-        inset: 3px;
-        background: #14142b;
-        border-radius: 13px;
-        z-index: -1;
-      }
-
-      @keyframes rotate {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
       }
 
       .tabs {
@@ -255,7 +219,7 @@
     </style>
   </head>
   <body>
-    <h1 class="main-title">HỌC TOÁN CÓ GÌ ĐÂU MÀ KHÓ ĐỂ TUI</h1>
+    <h1 class="main-title">HỌC TOÁN CÙNG KHANG NÈ!!!</h1>
 
     <div class="container">
       <!-- KHUNG ĐĂNG NHẬP / ĐĂNG KÝ -->
@@ -290,8 +254,7 @@
               placeholder="Nhập tên tài khoản mới..."
             />
             <small class="note-text"
-              >⚠️ Lưu ý: Đặt tên viết liền không dấu có số và kí hiệu đặc biệt
-              để tránh bị lỗi giữa những tài khoản khác nhau</small
+              >⚠️ Lưu ý: Đặt tên độc đáo, tránh đặt trùng tên nhé!</small
             >
           </div>
 
@@ -348,7 +311,7 @@
         </div>
       </div>
 
-      <!-- MÀN HÌNH SAU KHI ĐĂNG NHẬP THÀNH CÔNG -->
+      <!-- MÀN HÌNH CHÀO SAU KHI ĐĂNG NHẬP -->
       <div id="homeScreen">
         <div class="user-welcome">
           <span id="userName"></span>
@@ -358,155 +321,408 @@
         </div>
       </div>
 
-      <!-- KHUNG TRẮNG NỘI DUNG BÀI HỌC -->
-      <div class="content-box">
-        <h2>📌 MỤC ĐÍCH, HƯỚNG DẪN</h2>
-        <p>
-          Bài viết này được tạo ra nhằm mục đích giúp các bạn học sinh có thể
-          học toán một cách hiệu quả và dễ dàng hơn. Dưới đây là một số điểm
-          quan trọng cần lưu ý khi sử dụng tài liệu này:
-        </p>
-        <ul>
-          <li>Không được sử dụng nhiều tabs cùng lúc</li>
-          <li>Đảm bảo kết nối internet ổn định</li>
-          <li>Tránh sử dụng các ứng dụng khác trong quá trình học</li>
-          <li>Đảm bảo thiết bị của bạn có đủ pin hoặc được cắm sạc</li>
-          <li>Đọc kỹ hướng dẫn trước khi bắt đầu học</li>
-          <li>
-            Nếu các bạn sử dụng A.I hay bất kì công nghệ khác. Trang sẽ không
-            khóa account của bạn. Nếu bạn gặp bất kỳ vấn đề nào, chúng tôi sẽ
-            không giải quyết vấn đề đó.
-          </li>
-        </ul>
-        <p
-          style="
-            background: #e8f0fe;
-            padding: 12px;
-            border-left: 4px solid #1a73e8;
-            border-radius: 4px;
-          "
-        >
-          ⚠️ Lưu ý: Nếu gặp lỗi khi đăng nhập, vui lòng kiểm tra lại tên tài
-          khoản và câu trả lời bảo mật. Nếu vẫn không thể đăng nhập, hãy liên hệ
-          với quản trị viên để được hỗ trợ. Để có thể hổ trợ tốt hơn, bạn nên
-          cung cấp thông tin về lỗi gặp phải và thời gian xảy ra lỗi thông qua
-          email laankhang2012@gmail.com hoặc các kênh liên lạc khác.
-        </p>
-      </div>
+      <!-- KHU VỰC NỘI DUNG HỌC TẬP (ẨN CHO ĐẾN KHI ĐĂNG NHẬP THÀNH CÔNG) -->
+      <div
+        id="learningContent"
+        style="
+          display: none;
+          width: 100%;
+          flex-direction: column;
+          gap: 30px;
+          align-items: center;
+        "
+      >
+        <!-- KHUNG TRẮNG 1: LÝ THUYẾT -->
+        <div class="content-box">
+          <h2>📘 LÝ THUYẾT: PHƯƠNG TRÌNH & HỆ PHƯƠNG TRÌNH BẬC NHẤT 2 ẨN</h2>
 
-      <!-- KHUNG TRẮNG NỘI DUNG BÀI HỌC -->
-      <div class="content-box">
-        <h2>📘 LÝ THUYẾT: PHƯƠNG TRÌNH & HỆ PHƯƠNG TRÌNH BẬC NHẤT 2 ẨN</h2>
+          <h3>1. Phương trình bậc nhất hai ẩn</h3>
+          <p>
+            <b>Khái niệm:</b> Phương trình bậc nhất hai ẩn $x$ và $y$ là hệ thức
+            có dạng:
+          </p>
+          <div class="formula-card">$$ax + by = c$$</div>
+          <p>
+            <i
+              >(Trong đó $a, b, c$ là các số cho trước; $a$ và $b$ không đồng
+              thời bằng 0).</i
+            >
+          </p>
 
-        <h3>1. Phương trình bậc nhất hai ẩn</h3>
-        <p>
-          <b>Khái niệm:</b> Phương trình bậc nhất hai ẩn $x$ và $y$ là hệ thức
-          có dạng:
-        </p>
-        <div class="formula-card">ax + by = c</div>
-        <p>
-          <i
-            >(Trong đó $a, b, c$ là các số cho trước; $a$ và $b$ không đồng thời
-            bằng 0).</i
-          >
-        </p>
-        <ul>
-          <li>
-            <b>Nghiệm của phương trình:</b> Cặp số $(x_0; y_0)$ làm cho hai vế
-            của phương trình bằng nhau được gọi là một nghiệm của phương trình.
-          </li>
-          <li>
-            <b>Tập nghiệm:</b> Phương trình bậc nhất hai ẩn luôn có
-            <b>vô số nghiệm</b>. Tập nghiệm của nó được biểu diễn bởi đường
-            thẳng $d: ax + by = c$ trên mặt phẳng tọa độ $Oxy$.
-          </li>
-        </ul>
-
-        <h3>2. Hệ hai phương trình bậc nhất hai ẩn</h3>
-        <p>
-          <b>Khái niệm:</b> Là hệ gồm hai phương trình bậc nhất hai ẩn dạng:
-        </p>
-        <div class="formula-card">
-          $$\begin{cases} ax + by = c \\ a'x + b'y = c' \end{cases}$$
+          <h3>2. Hệ hai phương trình bậc nhất hai ẩn</h3>
+          <p>
+            <b>Khái niệm:</b> Là hệ gồm hai phương trình bậc nhất hai ẩn dạng:
+          </p>
+          <div class="formula-card">
+            $$\begin{cases} ax + by = c \\ a'x + b'y = c' \end{cases}$$
+          </div>
         </div>
-        <p>
-          Nghiệm chung $(x_0; y_0)$ của hai phương trình được gọi là một nghiệm
-          của hệ.
-        </p>
 
-        <h3>3. Phương pháp giải Hệ hai phương trình bậc nhất hai ẩn</h3>
-        <ul>
-          <li>
-            <b>Phương pháp thế:</b> Dùng một phương trình để biểu diễn một ẩn
-            (ví dụ $x$) theo ẩn kia ($y$), rồi thế vào phương trình còn lại để
-            đưa về phương trình bậc nhất một ẩn.
-          </li>
-          <li>
-            <b>Phương pháp cộng đại số:</b> Nhân hai vế của mỗi phương trình với
-            một số thích hợp sao cho hệ số của một ẩn trong hai phương trình
-            bằng nhau hoặc đối nhau, sau đó cộng hoặc trừ hai phương trình để
-            triệt tiêu ẩn đó.
-          </li>
-        </ul>
+        <!-- KHUNG TRẮNG 2: BÀI TẬP TRẮC NGHIỆM -->
+        <div class="content-box">
+          <h2>🎯 BÀI TẬP TRẮC NGHIỆM KIỂM TRA NHANH</h2>
+          <div id="quizContainer">
+            <!-- Câu 1 -->
+            <div class="quiz-question" data-answer="B">
+             <p><b>Câu 1 (Nhận biết):</b> Cặp số nào sau đây là nghiệm của phương trình $2x + y = 5$?</p>
+          <label><input type="radio" name="q1" value="A"> A. $(1; 1)$</label><br>
+          <label><input type="radio" name="q1" value="B"> B. $(2; 1)$</label><br>
+          <label><input type="radio" name="q1" value="C"> C. $(0; 1)$</label><br>
+          <label><input type="radio" name="q1" value="D"> D. $(3; 2)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
 
-        <p
-          style="
-            background: #e8f0fe;
-            padding: 12px;
-            border-left: 4px solid #1a73e8;
-            border-radius: 4px;
-            margin-top: 20px;
-          "
-        >
-          💡 <b>MẸO NHỚ:</b> Số nghiệm của hệ phương trình chính là số giao điểm
-          của hai đường thẳng đại diện cho hai phương trình đó trên mặt phẳng
-          tọa độ!
-        </p>
-      </div>
+        <!-- Câu 2 -->
+        <div class="quiz-question" data-answer="A" style="margin-top: 20px;">
+          <p><b>Câu 2 (Nhận biết):</b> Hệ phương trình $\begin{cases} x + y = 3 \\ x - y = 1 \end{cases}$ có nghiệm là bao nhiêu?</p>
+          <label><input type="radio" name="q2" value="A"> A. $(2; 1)$</label><br>
+          <label><input type="radio" name="q2" value="B"> B. $(1; 2)$</label><br>
+          <label><input type="radio" name="q2" value="C"> C. $(3; 0)$</label><br>
+          <label><input type="radio" name="q2" value="D"> D. $(0; 3)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
 
-      <!-- KHUNG TRẮNG 2: BÀI TẬP VÀ THỰC HÀNH -->
-      <div class="content-box">
-        <h2>📝 BÀI TẬP BẮT BUỘC & THỰC HÀNH</h2>
+        <!-- Câu 3 -->
+        <div class="quiz-question" data-answer="C" style="margin-top: 20px;">
+          <p><b>Câu 3 (Thông hiểu):</b> Phương trình nào sau đây cùng nhận cặp số $(-1; 2)$ làm nghiệm?</p>
+          <label><input type="radio" name="q3" value="A"> A. $x + y = 0$</label><br>
+          <label><input type="radio" name="q3" value="B"> B. $2x - y = 1$</label><br>
+          <label><input type="radio" name="q3" value="C"> C. $3x + 2y = 1$</label><br>
+          <label><input type="radio" name="q3" value="D"> D. $x - 2y = 3$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
 
-        <h3>
-          Bài 1: Giải các hệ phương trình sau bằng phương pháp cộng đại số
-        </h3>
-        <ul>
-          <li>a) $2x + y = 5$ và $x - y = 1$</li>
-          <li>b) $3x + 2y = 8$ và $2x - 3y = -1$</li>
-        </ul>
+        <!-- Câu 4 -->
+        <div class="quiz-question" data-answer="B" style="margin-top: 20px;">
+          <p><b>Câu 4 (Thông hiểu):</b> Hệ phương trình $\begin{cases} 2x + y = 4 \\ 4x + 2y = 9 \end{cases}$ có số nghiệm là:</p>
+          <label><input type="radio" name="q4" value="A"> A. 1 nghiệm</label><br>
+          <label><input type="radio" name="q4" value="B"> B. Vô nghiệm</label><br>
+          <label><input type="radio" name="q4" value="C"> C. Vô số nghiệm</label><br>
+          <label><input type="radio" name="q4" value="D"> D. 2 nghiệm</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
 
-        <h3>Bài 2: Giải hệ phương trình bằng phương pháp thế</h3>
-        <ul>
-          <li>a) $x - 3y = 2$ và $2x + 5y = 15$</li>
-        </ul>
-        <h2>💡 Gợi ý:</h2>
-        <p
-          style="
-            background: #f1f1e5;
-            padding: 12px;
-            border-left: 4px solid #995804;
-            border-radius: 4px;
-            margin-top: 20px;
-          "
-        >
-          - Với phương pháp cộng đại số, ta hãy nhân các phương trình với các số
-          thích hợp để triệt tiêu một ẩn. <br />
-          - Với phương pháp thế, ta hãy biểu diễn một ẩn theo ẩn kia từ một
-          phương trình, rồi thế vào phương trình còn lại.
-        </p>
+        <!-- Câu 5 -->
+        <div class="quiz-question" data-answer="D" style="margin-top: 20px;">
+          <p><b>Câu 5 (Thông hiểu):</b> Hệ phương trình $\begin{cases} 3x - y = 2 \\ -3x + y = -2 \end{cases}$ có số nghiệm là:</p>
+          <label><input type="radio" name="q5" value="A"> A. 1 nghiệm</label><br>
+          <label><input type="radio" name="q5" value="B"> B. Vô nghiệm</label><br>
+          <label><input type="radio" name="q5" value="C"> C. 2 nghiệm</label><br>
+          <label><input type="radio" name="q5" value="D"> D. Vô số nghiệm</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 6 -->
+        <div class="quiz-question" data-answer="A" style="margin-top: 20px;">
+          <p><b>Câu 6 (Vận dụng):</b> Cho hệ phương trình $\begin{cases} mx + y = 3 \\ x + my = 3 \end{cases}$. Tìm điều kiện của tham số $m$ để hệ có nghiệm duy nhất:</p>
+          <label><input type="radio" name="q6" value="A"> A. $m \neq 1$ và $m \neq -1$</label><br>
+          <label><input type="radio" name="q6" value="B"> B. $m \neq 1$</label><br>
+          <label><input type="radio" name="q6" value="C"> C. $m = 1$</label><br>
+          <label><input type="radio" name="q6" value="D"> D. $m \neq -1$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 7 -->
+        <div class="quiz-question" data-answer="C" style="margin-top: 20px;">
+          <p><b>Câu 7 (Vận dụng):</b> Biết rằng hệ phương trình $\begin{cases} ax + by = 5 \\ bx - ay = -3 \end{cases}$ nhận $(1; 2)$ làm nghiệm. Khi đó tổng $a + b$ bằng:</p>
+          <label><input type="radio" name="q7" value="A"> A. $1$</label><br>
+          <label><input type="radio" name="q7" value="B"> B. $2$</label><br>
+          <label><input type="radio" name="q7" value="C"> C. $3$</label><br>
+          <label><input type="radio" name="q7" value="D"> D. $4$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 8 -->
+        <div class="quiz-question" data-answer="B" style="margin-top: 20px;">
+          <p><b>Câu 8 (Vận dụng cao):</b> Cho hệ phương trình $\begin{cases} (m+1)x - y = 3 \\ mx + y = m \end{cases}$. Tìm giá trị nguyên của $m$ để hệ có nghiệm $(x; y)$ thỏa mãn $x > 0$ và $y < 0$:</p>
+          <label><input type="radio" name="q8" value="A"> A. $m = 0$</label><br>
+          <label><input type="radio" name="q8" value="B"> B. Không có giá trị nào của $m$</label><br>
+          <label><input type="radio" name="q8" value="C"> C. $m = 1$</label><br>
+          <label><input type="radio" name="q8" value="D"> D. $m = -1$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 9 -->
+        <div class="quiz-question" data-answer="A" style="margin-top: 20px;">
+          <p><b>Câu 9 (Vận dụng):</b> Hai vòi nước cùng chảy vào một bể cạn sau $1$ giờ $20$ phút thì đầy bể. Nếu mở vòi thứ nhất trong $10$ phút và vòi thứ hai trong $12$ phút thì đầy $\frac{2}{15}$ bể. Tính thời gian vòi thứ nhất chảy một mình đầy bể:</p>
+          <label><input type="radio" name="q9" value="A"> A. $2$ giờ</label><br>
+          <label><input type="radio" name="q9" value="B"> B. $3$ giờ</label><br>
+          <label><input type="radio" name="q9" value="C"> C. $2$ giờ $30$ phút</label><br>
+          <label><input type="radio" name="q9" value="D"> D. $4$ giờ</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 10 -->
+        <div class="quiz-question" data-answer="D" style="margin-top: 20px;">
+          <p><b>Câu 10 (Vận dụng cao):</b> Tìm các giá trị của tham số $m$ để hệ phương trình $\begin{cases} x + my = 2 \\ mx + y = 1 - m \end{cases}$ có nghiệm duy nhất $(x; y)$ sao cho $x + y$ đạt giá trị nhỏ nhất:</p>
+          <label><input type="radio" name="q10" value="A"> A. $m = 1$</label><br>
+          <label><input type="radio" name="q10" value="B"> B. $m = -1$</label><br>
+          <label><input type="radio" name="q10" value="C"> C. $m = 2$</label><br>
+          <label><input type="radio" name="q10" value="D"> D. Không tồn tại giá trị $m$ thỏa mãn</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 11 -->
+        <div class="quiz-question" data-answer="B" style="margin-top: 20px;">
+          <p><b>Câu 11 (Nhận biết):</b> Trong các hệ phương trình sau, hệ nào là hệ hai phương trình bậc nhất hai ẩn?</p>
+          <label><input type="radio" name="q11" value="A"> A. $\begin{cases} x^2 + y = 1 \\ x - y = 2 \end{cases}$</label><br>
+          <label><input type="radio" name="q11" value="B"> B. $\begin{cases} 2x - y = 4 \\ x + 3y = 5 \end{cases}$</label><br>
+          <label><input type="radio" name="q11" value="C"> C. $\begin{cases} \frac{1}{x} + y = 3 \\ x - y = 1 \end{cases}$</label><br>
+          <label><input type="radio" name="q11" value="D"> D. $\begin{cases} xy = 2 \\ x + y = 3 \end{cases}$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 12 -->
+        <div class="quiz-question" data-answer="C" style="margin-top: 20px;">
+          <p><b>Câu 12 (Thông hiểu):</b> Nghiệm của hệ phương trình $\begin{cases} 3x - 2y = 10 \\ x + 2y = 6 \end{cases}$ là:</p>
+          <label><input type="radio" name="q12" value="A"> A. $(2; -2)$</label><br>
+          <label><input type="radio" name="q12" value="B"> B. $(-4; 1)$</label><br>
+          <label><input type="radio" name="q12" value="C"> C. $(4; 1)$</label><br>
+          <label><input type="radio" name="q12" value="D"> D. $(1; 4)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 13 -->
+        <div class="quiz-question" data-answer="A" style="margin-top: 20px;">
+          <p><b>Câu 13 (Thông hiểu):</b> Cho đường thẳng $d: 3x - y = 2$. Điểm nào sau đây thuộc đường thẳng $d$?</p>
+          <label><input type="radio" name="q13" value="A"> A. $(1; 1)$</label><br>
+          <label><input type="radio" name="q13" value="B"> B. $(0; 2)$</label><br>
+          <label><input type="radio" name="q13" value="C"> C. $(2; 1)$</label><br>
+          <label><input type="radio" name="q13" value="D"> D. $(1; -1)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 14 -->
+        <div class="quiz-question" data-answer="D" style="margin-top: 20px;">
+          <p><b>Câu 14 (Vận dụng):</b> Tìm $m$ để hệ phương trình $\begin{cases} x - y = 1 \\ mx + y = 2 \end{cases}$ có nghiệm $(x; y)$ thỏa mãn $x + y = 4$:</p>
+          <label><input type="radio" name="q14" value="A"> A. $m = 1$</label><br>
+          <label><input type="radio" name="q14" value="B"> B. $m = 2$</label><br>
+          <label><input type="radio" name="q14" value="C"> C. $m = -1$</label><br>
+          <label><input type="radio" name="q14" value="D"> D. $m = 3$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 15 -->
+        <div class="quiz-question" data-answer="B" style="margin-top: 20px;">
+          <p><b>Câu 15 (Vận dụng):</b> Tổng hai số bằng $59$, và hai lần số thứ nhất lớn hơn ba lần số thứ hai là $7$. Tìm hai số đó:</p>
+          <label><input type="radio" name="q15" value="A"> A. $30$ và $29$</label><br>
+          <label><input type="radio" name="q15" value="B"> B. $38$ và $21$</label><br>
+          <label><input type="radio" name="q15" value="C"> C. $40$ và $19$</label><br>
+          <label><input type="radio" name="q15" value="D"> D. $35$ và $24$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 16 -->
+        <div class="quiz-question" data-answer="C" style="margin-top: 20px;">
+          <p><b>Câu 16 (Vận dụng cao):</b> Cho hệ phương trình $\begin{cases} x + 2ay = 1 \\ 2x - y = 3 \end{cases}$. Tìm giá trị của $a$ để hệ có nghiệm thỏa mãn $x^2 + y^2$ đạt giá trị nhỏ nhất:</p>
+          <label><input type="radio" name="q16" value="A"> A. $a = 1$</label><br>
+          <label><input type="radio" name="q16" value="B"> B. $a = \frac{1}{2}$</label><br>
+          <label><input type="radio" name="q16" value="C"> C. $a = -\frac{1}{4}$</label><br>
+          <label><input type="radio" name="q16" value="D"> D. $a = 2$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 17 -->
+        <div class="quiz-question" data-answer="A" style="margin-top: 20px;">
+          <p><b>Câu 17 (Vận dụng):</b> Một hình chữ nhật có chu vi là $70$cm. Nếu giảm chiều dài đi $5$cm và tăng chiều rộng đi $2$cm thì diện tích giảm đi $50\text{cm}^2$. Tính chiều dài và chiều rộng của hình chữ nhật:</p>
+          <label><input type="radio" name="q17" value="A"> A. Chiều dài $20$cm, chiều rộng $15$cm</label><br>
+          <label><input type="radio" name="q17" value="B"> B. Chiều dài $25$cm, chiều rộng $10$cm</label><br>
+          <label><input type="radio" name="q17" value="C"> C. Chiều dài $22$cm, chiều rộng $13$cm</label><br>
+          <label><input type="radio" name="q17" value="D"> D. Chiều dài $18$cm, chiều rộng $17$cm</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 18 -->
+        <div class="quiz-question" data-answer="D" style="margin-top: 20px;">
+          <p><b>Câu 18 (Vận dụng cao):</b> Tìm các giá trị nguyên của $m$ để hệ phương trình $\begin{cases} mx + y = 3m - 1 \\ x + my = m + 1 \end{cases}$ có nghiệm duy nhất $(x; y)$ mà $x$ và $y$ đều là các số nguyên:</p>
+          <label><input type="radio" name="q18" value="A"> A. $m \in \{0; 2\}$</label><br>
+          <label><input type="radio" name="q18" value="B"> B. $m \in \{1; -2\}$</label><br>
+          <label><input type="radio" name="q18" value="C"> C. $m = 2$</label><br>
+          <label><input type="radio" name="q18" value="D"> D. $m \in \{0; 2\}$ (với $m \neq 1$)</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 19 -->
+        <div class="quiz-question" data-answer="B" style="margin-top: 20px;">
+          <p><b>Câu 19 (Thông hiểu):</b> Cặp số $(-2; 3)$ là nghiệm của phương trình nào sau đây?</p>
+          <label><input type="radio" name="q19" value="A"> A. $3x - y = -5$</label><br>
+          <label><input type="radio" name="q19" value="B"> B. $-x + 2y = 8$</label><br>
+          <label><input type="radio" name="q19" value="C"> C. $2x + 3y = 0$</label><br>
+          <label><input type="radio" name="q19" value="D"> D. $x - y = 5$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 20 -->
+        <div class="quiz-question" data-answer="C" style="margin-top: 20px;">
+          <p><b>Câu 20 (Vận dụng cao):</b> Cho hệ phương trình $\begin{cases} x + y = 2m \\ x^2 + y^2 = m^2 + 1 \end{cases}$. Tìm giá trị của $m$ để hệ phương trình có nghiệm:</p>
+          <label><input type="radio" name="q20" value="A"> A. $m \ge 1$ hoặc $m \le -1$</label><br>
+          <label><input type="radio" name="q20" value="B"> B. $-1 \le m \le 1$</label><br>
+          <label><input type="radio" name="q20" value="C"> C. $m = 1$ hoặc $m = -1$</label><br>
+          <label><input type="radio" name="q20" value="D"> D. $m > 0$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 21 -->
+        <div class="quiz-question" data-answer="A" style="margin-top: 20px;">
+          <p><b>Câu 21 (Thông hiểu):</b> Phương trình nào sau đây là phương trình bậc nhất hai ẩn?</p>
+          <label><input type="radio" name="q21" value="A"> A. $2x + 3y = 5$</label><br>
+          <label><input type="radio" name="q21" value="B"> B. $x^2 + y^2 = 1$</label><br>
+          <label><input type="radio" name="q21" value="C"> C. $xy = 6$</label><br>
+          <label><input type="radio" name="q21" value="D"> D. $\frac{1}{x} + \frac{1}{y} = 1$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        </div>
+
+        <!-- Câu 22 -->
+        <div class="quiz-question" data-answer="D" style="margin-top: 20px;">
+          <p><b>Câu 22 (Vận dụng):</b> Cho hệ phương trình $\begin{cases} x + y = 4 \\ 2x - y = 1 \end{cases}$. Tìm nghiệm $(x; y)$ của hệ:</p>
+          <label><input type="radio" name="q22" value="A"> A. $(1; 3)$</label><br>
+          <label><input type="radio" name="q22" value="B"> B. $(2; 2)$</label><br>
+          <label><input type="radio" name="q22" value="C"> C. $(3; 1)$</label><br>
+          <label><input type="radio" name="q22" value="D"> D. $(5; -1)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+        
+        <!-- Câu 23 -->
+        <div class="quiz-question" data-answer="B" style="margin-top: 20px;">
+          <p><b>Câu 23 (Vận dụng cao):</b> Cho hệ phương trình $\begin{cases} x + 2y = 5 \\ 3x - y = 4 \end{cases}$. Tìm nghiệm $(x; y)$ của hệ:</p>
+          <label><input type="radio" name="q23" value="A"> A. $(1; 2)$</label><br>
+          <label><input type="radio" name="q23" value="B"> B. $(2; \frac{3}{2})$</label><br>
+          <label><input type="radio" name="q23" value="C"> C. $(3; 1)$</label><br>
+          <label><input type="radio" name="q23" value="D"> D. $(0; \frac{5}{2})$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+
+        <!-- Câu 24 -->
+        <div class="quiz-question" data-answer="C" style="margin-top: 20px;">
+          <p><b>Câu 24 (Vận dụng):</b> Cho hệ phương trình $\begin{cases} 2x + y = 7 \\ x - y = 1 \end{cases}$. Tìm nghiệm $(x; y)$ của hệ:</p>
+          <label><input type="radio" name="q24" value="A"> A. $(3; 1)$</label><br>
+          <label><input type="radio" name="q24" value="B"> B. $(2; 3)$</label><br>
+          <label><input type="radio" name="q24" value="C"> C. $(4; -1)$</label><br>
+          <label><input type="radio" name="q24" value="D"> D. $(5; -3)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+
+        <!-- Câu 25 -->
+        <div class="quiz-question" data-answer="A" style="margin-top: 20px;">
+          <p><b>Câu 25 (Vận dụng cao):</b> Cho hệ phương trình $\begin{cases} x + y = 6 \\ 2x - y = 3 \end{cases}$. Tìm nghiệm $(x; y)$ của hệ:</p>
+          <label><input type="radio" name="q25" value="A"> A. $(3; 3)$</label><br>
+          <label><input type="radio" name="q25" value="B"> B. $(4; 2)$</label><br>
+          <label><input type="radio" name="q25" value="C"> C. $(5; 1)$</label><br>
+          <label><input type="radio" name="q25" value="D"> D. $(2; 4)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+
+        <!-- Câu 26 -->
+        <div class="quiz-question" data-answer="D" style="margin-top: 20px;">
+          <p><b>Câu 26 (Vận dụng):</b> Cho hệ phương trình $\begin{cases} x - y = 2 \\ 2x + y = 7 \end{cases}$. Tìm nghiệm $(x; y)$ của hệ:</p>
+          <label><input type="radio" name="q26" value="A"> A. $(3; 1)$</label><br>
+          <label><input type="radio" name="q26" value="B"> B. $(4; 2)$</label><br>
+          <label><input type="radio" name="q26" value="C"> C. $(5; 3)$</label><br>
+          <label><input type="radio" name="q26" value="D"> D. $(1; -1)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+
+        <!-- Câu 27 -->
+        <div class="quiz-question" data-answer="B" style="margin-top: 20px;">
+          <p><b>Câu 27 (Vận dụng cao):</b> Cho hệ phương trình $\begin{cases} 3x + 2y = 12 \\ x - y = 1 \end{cases}$. Tìm nghiệm $(x; y)$ của hệ:</p>
+          <label><input type="radio" name="q27" value="A"> A. $(2; 3)$</label><br>
+          <label><input type="radio" name="q27" value="B"> B. $(4; 2)$</label><br>
+          <label><input type="radio" name="q27" value="C"> C. $(3; 1)$</label><br>
+          <label><input type="radio" name="q27" value="D"> D. $(5; 0)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+
+        <!-- Câu 28 -->
+        <div class="quiz-question" data-answer="C" style="margin-top: 20px;">
+          <p><b>Câu 28 (Vận dụng):</b> Cho hệ phương trình $\begin{cases} x + 2y = 5 \\ 3x - y = 1 \end{cases}$. Tìm nghiệm $(x; y)$ của hệ:</p>
+          <label><input type="radio" name="q28" value="A"> A. $(1; 2)$</label><br>
+          <label><input type="radio" name="q28" value="B"> B. $(2; 1)$</label><br>
+          <label><input type="radio" name="q28" value="C"> C. $(3; 1)$</label><br>
+          <label><input type="radio" name="q28" value="D"> D. $(1; 3)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+
+        <!-- Câu 29 -->
+        <div class="quiz-question" data-answer="A" style="margin-top: 20px;">
+          <p><b>Câu 29 (Vận dụng cao):</b> Cho hệ phương trình $\begin{cases} 2x + y = 7 \\ x - y = 1 \end{cases}$. Tìm nghiệm $(x; y)$ của hệ:</p>
+          <label><input type="radio" name="q29" value="A"> A. $(3; 1)$</label><br>
+          <label><input type="radio" name="q29" value="B"> B. $(4; 2)$</label><br>
+          <label><input type="radio" name="q29" value="C"> C. $(5; 3)$</label><br>
+          <label><input type="radio" name="q29" value="D"> D. $(2; 0)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+
+        <!-- Câu 30 -->
+        <div class="quiz-question" data-answer="D" style="margin-top: 20px;">
+          <p><b>Câu 30 (Vận dụng):</b> Cho hệ phương trình $\begin{cases} x + y = 4 \\ 2x - y = 2 \end{cases}$. Tìm nghiệm $(x; y)$ của hệ:</p>
+          <label><input type="radio" name="q30" value="A"> A. $(1; 3)$</label><br>
+          <label><input type="radio" name="q30" value="B"> B. $(2; 2)$</label><br>
+          <label><input type="radio" name="q30" value="C"> C. $(3; 1)$</label><br>
+          <label><input type="radio" name="q30" value="D"> D. $(2; 2)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+
+        <!-- Câu 31 -->
+        <div class="quiz-question" data-answer="B" style="margin-top: 20px;">
+          <p><b>Câu 31 (Vận dụng cao):</b> Cho hệ phương trình $\begin{cases} 4x - y = 6 \\ x + 3y = 7 \end{cases}$. Tìm nghiệm $(x; y)$ của hệ:</p>
+          <label><input type="radio" name="q31" value="A"> A. $(1; 2)$</label><br>
+          <label><input type="radio" name="q31" value="B"> B. $(2; 1)$</label><br>
+          <label><input type="radio" name="q31" value="C"> C. $(3; 0)$</label><br>
+          <label><input type="radio" name="q31" value="D"> D. $(0; 3)$</label>
+          <div class="explanation" style="display:none; margin-top:8px; padding:10px; background:#f8d7da; border-left:4px solid #dc3545; border-radius:4px; color:#721c24;"></div>
+
+
+        <div
+              class="quiz-feedback"
+                  border-left: 4px solid #dc3545;
+                  border-radius: 4px;
+                  color: #721c24;
+                "
+              ></div>
+            </div>
+
+            <button
+              id="btnSubmitQuiz"
+              class="btn-submit"
+              style="margin-top: 25px"
+            >
+              Nộp bài & Xem kết quả
+            </button>
+          </div>
+
+          <!-- Kết quả và nút làm lại -->
+          <div
+            id="quizResultBox"
+            style="
+              display: none;
+              margin-top: 25px;
+              padding: 20px;
+              background: #e8f0fe;
+              border-radius: 8px;
+              border-left: 5px solid #1a73e8;
+              text-align: center;
+            "
+          >
+            <h3 id="scoreTitle" style="margin: 0 0 10px 0; color: #1a73e8"></h3>
+            <p
+              id="scoreMessage"
+              style="
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #333;
+                margin: 0 0 15px 0;
+              "
+            ></p>
+            <button
+              id="btnRetryQuiz"
+              class="btn-submit"
+              style="background: #28a745; max-width: 200px; margin: 0 auto"
+            >
+              🔄 Làm lại bài
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
     <script>
       const GOOGLE_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbw-5TsqJ1zGtc3baprzehB8lW39JN5tWwI1AS2Pl_liXhEX4sPqBT90WWA8oUKa3q0W/exec";
+        "https://script.google.com/macros/s/AKfycbx0HI_B73CRDNj_LqVbgHqwuhhhh9XTDSs3rBgTkLCLSFfvtZFQwpqBcZUp7hpjQT2y/exec";
 
-      // Hàm JSONP gửi request mượt mà, chống chặn CORS 100%
       function sendRequest(params, callback) {
         const callbackName =
           "googleCallback_" + Math.round(100000 * Math.random());
-
         window[callbackName] = function (data) {
           delete window[callbackName];
           if (script.parentNode) script.parentNode.removeChild(script);
@@ -519,9 +735,7 @@
 
         script.onerror = function () {
           if (script.parentNode) script.parentNode.removeChild(script);
-          alert(
-            "Không thể kết nối đến máy chủ Google! Vui lòng kiểm tra lại cấu hình Deploy.",
-          );
+          alert("Không thể kết nối đến máy chủ Google!");
         };
 
         document.body.appendChild(script);
@@ -546,6 +760,7 @@
 
         const loginScreen = document.getElementById("loginScreen");
         const homeScreen = document.getElementById("homeScreen");
+        const learningContent = document.getElementById("learningContent");
         const userName = document.getElementById("userName");
 
         const btnLogin = document.getElementById("btnLogin");
@@ -577,11 +792,10 @@
             selectQuestion.value === "custom" ? "block" : "none";
         });
 
-        // XỬ LÝ ĐĂNG KÝ
+        // ĐĂNG KÝ
         btnRegister.addEventListener("click", () => {
           const name = regName.value.trim();
           const answer = regAnswer.value.trim().toLowerCase();
-
           if (!name) {
             alert("Vui lòng đặt tên tài khoản!");
             return;
@@ -595,13 +809,11 @@
               return;
             }
           } else {
-            const qMap = {
-              pet: "Tên con vật cưng đầu tiên của bạn?",
-              school: "Tên trường tiểu học của bạn?",
-            };
-            questionStr = qMap[selectQuestion.value];
+            questionStr =
+              selectQuestion.value === "pet"
+                ? "Tên con vật cưng đầu tiên của bạn?"
+                : "Tên trường tiểu học của bạn?";
           }
-
           if (!answer) {
             alert("Vui lòng nhập câu trả lời bảo mật!");
             return;
@@ -610,30 +822,29 @@
           btnRegister.innerText = "Đang lưu...";
           btnRegister.disabled = true;
 
-          const params = {
-            action: "register",
-            name: name,
-            question: questionStr,
-            answer: answer,
-          };
-
-          sendRequest(params, (data) => {
-            btnRegister.innerText = "Tạo tài khoản";
-            btnRegister.disabled = false;
-
-            if (data && data.status === "EXISTS") {
-              alert(
-                `❌ Tên tài khoản "${name}" đã có bạn khác đặt rồi!\nVui lòng chọn tên khác (vd: ${name}2026) nhé.`,
-              );
-              regName.focus();
-            } else if (data && data.status === "SUCCESS") {
-              alert("🎉 Đăng ký thành công!");
-              loginSuccess(name);
-            }
-          });
+          sendRequest(
+            {
+              action: "register",
+              name: name,
+              question: questionStr,
+              answer: answer,
+            },
+            (data) => {
+              btnRegister.innerText = "Tạo tài khoản";
+              btnRegister.disabled = false;
+              if (data && data.status === "EXISTS") {
+                alert(
+                  `❌ Tên tài khoản "${name}" đã có người đặt! Hãy chọn tên khác.`,
+                );
+              } else if (data && data.status === "SUCCESS") {
+                alert("🎉 Đăng ký thành công!");
+                loginSuccess(name);
+              }
+            },
+          );
         });
 
-        // XỬ LÝ ĐĂNG NHẬP
+        // ĐĂNG NHẬP
         btnLogin.addEventListener("click", () => {
           const name = loginName.value.trim();
           if (!name) {
@@ -644,28 +855,22 @@
           btnLogin.innerText = "Đang kiểm tra...";
           btnLogin.disabled = true;
 
-          const params = { action: "login", name: name };
-
-          sendRequest(params, (data) => {
+          sendRequest({ action: "login", name: name }, (data) => {
             btnLogin.innerText = "Đăng nhập vào học";
             btnLogin.disabled = false;
-
             if (data && data.status === "SUCCESS") {
               currentUserName = name;
               currentCorrectAnswer = data.answer || "";
               questionText.innerText = data.question || "Mật khẩu bảo mật:";
-
               formLogin.style.display = "none";
               formVerify.style.display = "block";
             } else if (data && data.status === "NOT_FOUND") {
-              alert(
-                `❌ Tài khoản "${name}" chưa được đăng ký! Vui lòng bấm tab ĐĂNG KÝ.`,
-              );
+              alert(`❌ Tài khoản "${name}" chưa được đăng ký!`);
             }
           });
         });
 
-        // XÁC MINH CÂU HỎI BẢO MẬT
+        // XÁC MINH
         btnVerify.addEventListener("click", () => {
           const ans = verifyAnswer.value.trim().toLowerCase();
           if (ans === currentCorrectAnswer) {
@@ -678,18 +883,101 @@
         function loginSuccess(name) {
           loginScreen.style.display = "none";
           homeScreen.style.display = "block";
-          userName.innerText = "Xin chào: " + name;
+          userName.innerText = "Xin chào học sinh: " + name;
+          if (learningContent) learningContent.style.display = "flex";
         }
 
         logoutBtn.addEventListener("click", () => {
           homeScreen.style.display = "none";
           loginScreen.style.display = "block";
+          if (learningContent) learningContent.style.display = "none";
           tabLoginBtn.click();
           loginName.value = "";
           regName.value = "";
           regAnswer.value = "";
           verifyAnswer.value = "";
         });
+
+        // CHẤM ĐIỂM TRẮC NGHIỆM VÀ GỬI LÊN GOOGLE SHEET
+        const btnSubmitQuiz = document.getElementById("btnSubmitQuiz");
+        const btnRetryQuiz = document.getElementById("btnRetryQuiz");
+
+        if (btnSubmitQuiz) {
+          btnSubmitQuiz.addEventListener("click", () => {
+            const questions = document.querySelectorAll(".quiz-question");
+            let score = 0;
+            let total = questions.length;
+
+            questions.forEach((q, index) => {
+              const correctAnswer = q.getAttribute("data-answer");
+              const selectedOption = q.querySelector(
+                `input[name="q${index + 1}"]:checked`,
+              );
+              const explanationDiv = q.querySelector(".explanation");
+
+              if (selectedOption && selectedOption.value === correctAnswer) {
+                score++;
+                explanationDiv.style.display = "none";
+              } else {
+                explanationDiv.style.display = "block";
+                if (!selectedOption) {
+                  explanationDiv.innerHTML = `⚠️ <b>Bạn chưa chọn câu này!</b> Đáp án đúng là: <b>${correctAnswer}</b>.`;
+                } else {
+                  explanationDiv.innerHTML = `❌ <b>Bạn chọn sai rồi!</b> Đáp án đúng phải là <b>${correctAnswer}</b>.`;
+                }
+              }
+            });
+
+            const finalScore = Math.round((score / total) * 10 * 10) / 10;
+
+            // GỬI ĐIỂM LÊN GOOGLE SHEET
+            sendRequest(
+              {
+                action: "save_score",
+                name: currentUserName,
+                score: finalScore,
+              },
+              (res) => {},
+            );
+
+            const resultBox = document.getElementById("quizResultBox");
+            const scoreTitle = document.getElementById("scoreTitle");
+            const scoreMessage = document.getElementById("scoreMessage");
+
+            resultBox.style.display = "block";
+            scoreTitle.innerText = `🎉 KẾT QUẢ: ${finalScore} / 10 điểm (${score}/${total} câu đúng)`;
+
+            if (finalScore >= 8) {
+              scoreMessage.innerHTML =
+                "🌟 <b>Xuất sắc quá!</b> Thầy rất khen ngợi tinh thần học tập của bạn!";
+              scoreMessage.style.color = "#28a745";
+            } else if (finalScore >= 5) {
+              scoreMessage.innerHTML =
+                "👍 <b>Khá ổn!</b> Bạn đã nắm được cơ bản bài học, cố gắng ôn thêm nhé!";
+              scoreMessage.style.color = "#d97706";
+            } else {
+              scoreMessage.innerHTML =
+                "🍀 <b>Chúc bạn may mắn lần sau!</b> Hãy đọc lại lý thuyết và thử lại nào!";
+              scoreMessage.style.color = "#dc3545";
+            }
+            resultBox.scrollIntoView({ behavior: "smooth" });
+          });
+        }
+
+        if (btnRetryQuiz) {
+          btnRetryQuiz.addEventListener("click", () => {
+            document
+              .querySelectorAll('input[type="radio"]')
+              .forEach((radio) => (radio.checked = false));
+            document
+              .querySelectorAll(".explanation")
+              .forEach((div) => (div.style.display = "none"));
+            document.getElementById("quizResultBox").style.display = "none";
+            document
+              .getElementById("quizContainer")
+              .scrollIntoView({ behavior: "smooth" });
+          });
+        }
       });
     </script>
   </body>
